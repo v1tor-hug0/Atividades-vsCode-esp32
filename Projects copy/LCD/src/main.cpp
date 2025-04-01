@@ -10,15 +10,17 @@ LiquidCrystal_I2C lcd(0x27, 20, 4);
 
 void setup()
 {
-  randomSeed(analogRead(36));
+  randomSeed(analogRead(0));
+
   pinMode(led_ama, OUTPUT);
   pinMode(led_verm, OUTPUT);
   pinMode(botao, INPUT_PULLUP);
-
+  
   Serial.begin(9600);
+
   lcd.init();
   lcd.backlight();
-  lcd.print("LIGAR DETECTOR ");
+  lcd.print("LIGANDO DETECTOR ");
   delay(3000);
   lcd.setCursor(0,0);
   lcd.print("PRESSIONE O BOTAO");
@@ -26,6 +28,7 @@ void setup()
 
 void loop()
 {
+
   if (digitalRead(botao) == LOW)
 
   {
@@ -43,7 +46,7 @@ void loop()
       digitalWrite(led_verm, LOW);
       delay(500);
     }
-    int resultado = random(5);
+    int resultado = random(0,4);
     
     switch (resultado)
     {
@@ -61,7 +64,7 @@ void loop()
 
     case 2:
       lcd.setCursor(0,0);
-      lcd.print("MEIA VERDADE      ");
+      lcd.print("50% VERDADE       ");
       digitalWrite(led_verm, HIGH);
       digitalWrite(led_ama, HIGH);
     break;
